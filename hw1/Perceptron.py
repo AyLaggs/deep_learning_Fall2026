@@ -45,8 +45,7 @@ def perceptron(X, y, num_iterations=1):
                 weights += y[idx] * x_i
                 bias += y[idx]
 
-        # Plotting the hyperplane after each iteration
-        plot_hyperplane(X, y, weights, bias)
+            plot_hyperplane(X, y, weights, bias)
 
         # Print the current weights and bias after each iteration
         print(f"Iteration {_ + 1}/{num_iterations}: Weights: {weights}, Bias: {bias}")
@@ -108,17 +107,21 @@ def plot_hyperplane(X, y, weights, bias):
     # plt.close()
 
 # Example usage:
-if __name__ == "__main__":
+if __name__ == "__main__":    
     # Sample data points and labels
     # X = torch.tensor([[1, 1], [2, -2], [-1, -1.5], [-2, -1], [-2, 1], [1.5, -0.5], [1.5, 0.5]], dtype=torch.float32)
     # y = torch.tensor([1, -1, -1, -1, 1, 1, -1], dtype=torch.float32)
 
-    # OG
-    X = torch.tensor([[1, 1], [2, -2], [-1, -1.5], [-2, -1], [-2, 1], [1.5, -0.5]], dtype=torch.float32)
-    y = torch.tensor([1, -1, -1, -1, 1, 1], dtype=torch.float32)
+    # # OG
+    # X = torch.tensor([[1, 1], [2, -2], [-1, -1.5], [-2, -1], [-2, 1], [1.5, -0.5]], dtype=torch.float32)
+    # y = torch.tensor([1, -1, -1, -1, 1, 1], dtype=torch.float32)
+
+    # Custom Dataset
+    X = torch.tensor([[1, 1], [2, -2], [-1, -1.5], [-2, -1], [-2, 1], [1.5, -0.5], [-2.5, -0.5], [3, 3], [4, -4], [-3, -2], [-4, -3], [-3, 3], [3, -1]], dtype=torch.float32)
+    y = torch.tensor([1, -1, -1, -1, 1, 1, -1, 1, -1, -1, -1, 1, 1], dtype=torch.float32)
 
     # Train the perceptron
-    final_weights, final_bias, if_converge = perceptron(X, y, num_iterations=20)
+    final_weights, final_bias, if_converge = perceptron(X, y, num_iterations=100)
 
     if if_converge:
         print("Converged!")
