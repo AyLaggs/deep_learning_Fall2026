@@ -51,14 +51,14 @@ def perceptron(X, y, num_iterations=1):
         # Print the current weights and bias after each iteration
         print(f"Iteration {_ + 1}/{num_iterations}: Weights: {weights}, Bias: {bias}")
 
+        # Store the current weights and bias for convergence checking
+        weights_history.append(weights.clone())
+        bias_history.append(bias.clone())
+        
         # Print the change in weights and bias after each iteration
         if len(weights_history) > 1:
             print(f"Change in Weights: {weights - weights_history[-2]}, Change in Bias: {bias - bias_history[-2]}")
             print("-------------------------------------------------------------------------------------------------") 
-
-        # Store the current weights and bias for convergence checking
-        weights_history.append(weights.clone())
-        bias_history.append(bias.clone())
 
         # If converged break out of the loop
         if len(weights_history) > 1 and torch.all(weights == weights_history[-2]) and bias == bias_history[-2]:
